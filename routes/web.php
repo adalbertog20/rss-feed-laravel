@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RssController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/rss', [RssController::class, 'index'])->name('rss.index');
+Route::get('rss/{rss}', [RssController::class, 'show'])->name('rss.show');
+Route::post('/rss', [RssController::class, 'store'])->name('rss.store');
+Route::get('/rss', [RssController::class, 'index'])->name('rss.index');
 
 require __DIR__.'/auth.php';
